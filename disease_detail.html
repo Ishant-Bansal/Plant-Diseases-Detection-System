@@ -1,0 +1,155 @@
+{% extends "base.html" %}
+
+{% block title %}{{ disease.name }} - PlantCare AI{% endblock %}
+
+{% block content %}
+<div class="container mt-5 pt-5">
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <!-- Breadcrumb -->
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{ url_for('diseases') }}">Diseases</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{{ disease.name }}</li>
+                </ol>
+            </nav>
+
+            <!-- Disease Header -->
+            <div class="disease-header mb-4">
+                <div class="d-flex justify-content-between align-items-start">
+                    <div>
+                        <h1 class="display-5 fw-bold text-primary">{{ disease.name }}</h1>
+                        <p class="lead text-muted">{{ disease.description }}</p>
+                    </div>
+                    <div class="text-end">
+                        <span class="badge bg-{{ 'danger' if 'High' in disease.severity else 'warning' if 'Moderate' in disease.severity else 'success' }} fs-6">
+                            {{ disease.severity }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Disease Information Cards -->
+            <div class="row g-4">
+                <!-- Symptoms -->
+                {% if disease.symptoms %}
+                <div class="col-md-6">
+                    <div class="card border-warning h-100">
+                        <div class="card-header bg-warning text-dark">
+                            <h5 class="mb-0">
+                                <i class="fas fa-exclamation-triangle me-2"></i>Symptoms
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-unstyled">
+                                {% for symptom in disease.symptoms %}
+                                <li class="mb-2">
+                                    <i class="fas fa-circle text-warning me-2"></i>{{ symptom }}
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+
+                <!-- Treatment -->
+                {% if disease.treatment %}
+                <div class="col-md-6">
+                    <div class="card border-info h-100">
+                        <div class="card-header bg-info text-white">
+                            <h5 class="mb-0">
+                                <i class="fas fa-medkit me-2"></i>Treatment
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="mb-0">{{ disease.treatment }}</p>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+
+            <!-- Do's and Don'ts -->
+            <div class="row mt-4">
+                <!-- Do's -->
+                <div class="col-md-6">
+                    <div class="card border-success h-100">
+                        <div class="card-header bg-success text-white">
+                            <h5 class="mb-0">
+                                <i class="fas fa-check-circle me-2"></i>Do's
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-unstyled">
+                                {% for do in disease.dos %}
+                                <li class="mb-2">
+                                    <i class="fas fa-check text-success me-2"></i>{{ do }}
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Don'ts -->
+                <div class="col-md-6">
+                    <div class="card border-danger h-100">
+                        <div class="card-header bg-danger text-white">
+                            <h5 class="mb-0">
+                                <i class="fas fa-times-circle me-2"></i>Don'ts
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-unstyled">
+                                {% for dont in disease.donts %}
+                                <li class="mb-2">
+                                    <i class="fas fa-times text-danger me-2"></i>{{ dont }}
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="action-buttons mt-5 text-center">
+                <a href="{{ url_for('predict') }}" class="btn btn-primary btn-lg me-3">
+                    <i class="fas fa-search me-2"></i>Detect This Disease
+                </a>
+                <a href="{{ url_for('diseases') }}" class="btn btn-outline-primary btn-lg">
+                    <i class="fas fa-arrow-left me-2"></i>Back to Diseases
+                </a>
+            </div>
+
+            <!-- Related Information -->
+            <div class="related-info mt-5">
+                <div class="card bg-light">
+                    <div class="card-body">
+                        <h5><i class="fas fa-info-circle me-2 text-primary"></i>Additional Information</h5>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6>Prevention Tips:</h6>
+                                <ul class="list-unstyled">
+                                    <li><i class="fas fa-shield-alt text-success me-2"></i>Monitor plants regularly</li>
+                                    <li><i class="fas fa-shield-alt text-success me-2"></i>Maintain proper spacing</li>
+                                    <li><i class="fas fa-shield-alt text-success me-2"></i>Use disease-resistant varieties</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <h6>Early Detection:</h6>
+                                <ul class="list-unstyled">
+                                    <li><i class="fas fa-eye text-info me-2"></i>Check leaves regularly</li>
+                                    <li><i class="fas fa-eye text-info me-2"></i>Look for color changes</li>
+                                    <li><i class="fas fa-eye text-info me-2"></i>Monitor growth patterns</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

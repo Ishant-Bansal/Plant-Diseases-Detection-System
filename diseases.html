@@ -1,0 +1,134 @@
+{% extends "base.html" %}
+
+{% block title %}Diseases Guide - PlantCare AI{% endblock %}
+
+{% block content %}
+<div class="container mt-5 pt-5">
+    <!-- Page Header -->
+    <div class="text-center mb-5">
+        <h1 class="display-4 fw-bold text-primary">
+            <i class="fas fa-book me-3"></i>Plant Diseases Guide
+        </h1>
+        <p class="lead text-muted">Comprehensive information about common plant diseases and their treatments</p>
+    </div>
+
+    <!-- Search and Filter -->
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <div class="input-group">
+                <span class="input-group-text">
+                    <i class="fas fa-search"></i>
+                </span>
+                <input type="text" class="form-control" id="searchInput" placeholder="Search diseases...">
+            </div>
+        </div>
+        <div class="col-md-6">
+            <select class="form-select" id="filterSelect">
+                <option value="">All Plants</option>
+                <option value="Apple">Apple</option>
+                <option value="Tomato">Tomato</option>
+                <option value="Potato">Potato</option>
+                <option value="Grape">Grape</option>
+                <option value="Corn">Corn</option>
+                <option value="Cherry">Cherry</option>
+                <option value="Peach">Peach</option>
+                <option value="Pepper">Pepper</option>
+                <option value="Squash">Squash</option>
+                <option value="Strawberry">Strawberry</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Diseases Grid -->
+    <div class="row g-4" id="diseasesGrid">
+        {% for disease_key in diseases %}
+        {% set disease = disease_info[disease_key] %}
+        <div class="col-lg-4 col-md-6 disease-card" data-plant="{{ disease_key.split('___')[0] }}" data-name="{{ disease.name.lower() }}">
+            <div class="card h-100 shadow-sm hover-shadow">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-start mb-3">
+                        <h5 class="card-title text-primary">{{ disease.name }}</h5>
+                        <span class="badge bg-{{ 'danger' if 'High' in disease.severity else 'warning' if 'Moderate' in disease.severity else 'success' }}">
+                            {{ disease.severity }}
+                        </span>
+                    </div>
+                    
+                    <p class="card-text text-muted">{{ disease.description[:150] }}{% if disease.description|length > 150 %}...{% endif %}</p>
+                    
+                    <div class="disease-symptoms mb-3">
+                        <h6 class="text-muted">Key Symptoms:</h6>
+                        <ul class="list-unstyled">
+                            {% for symptom in disease.symptoms[:3] %}
+                            <li><i class="fas fa-circle text-warning me-2 small"></i>{{ symptom }}</li>
+                            {% endfor %}
+                            {% if disease.symptoms|length > 3 %}
+                            <li class="text-muted small">+{{ disease.symptoms|length - 3 }} more symptoms</li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                    
+                    <div class="disease-actions">
+                        <a href="{{ url_for('disease_detail', disease_key=disease_key) }}" class="btn btn-outline-primary btn-sm">
+                            <i class="fas fa-info-circle me-1"></i>Learn More
+                        </a>
+                        <a href="{{ url_for('predict') }}" class="btn btn-primary btn-sm">
+                            <i class="fas fa-search me-1"></i>Detect
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- No Results Message -->
+    <div class="text-center mt-5 d-none" id="noResults">
+        <i class="fas fa-search fa-3x text-muted mb-3"></i>
+        <h4 class="text-muted">No diseases found</h4>
+        <p class="text-muted">Try adjusting your search criteria</p>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('searchInput');
+    const filterSelect = document.getElementById('filterSelect');
+    const diseasesGrid = document.getElementById('diseasesGrid');
+    const noResults = document.getElementById('noResults');
+    const diseaseCards = document.querySelectorAll('.disease-card');
+
+    function filterDiseases() {
+        const searchTerm = searchInput.value.toLowerCase();
+        const filterValue = filterSelect.value.toLowerCase();
+        let visibleCount = 0;
+
+        diseaseCards.forEach(card => {
+            const diseaseName = card.dataset.name;
+            const plantType = card.dataset.plant.toLowerCase();
+            
+            const matchesSearch = diseaseName.includes(searchTerm);
+            const matchesFilter = !filterValue || plantType.includes(filterValue);
+            
+            if (matchesSearch && matchesFilter) {
+                card.style.display = 'block';
+                visibleCount++;
+            } else {
+                card.style.display = 'none';
+            }
+        });
+
+        // Show/hide no results message
+        if (visibleCount === 0) {
+            noResults.classList.remove('d-none');
+        } else {
+            noResults.classList.add('d-none');
+        }
+    }
+
+    searchInput.addEventListener('input', filterDiseases);
+    filterSelect.addEventListener('change', filterDiseases);
+});
+</script>
+{% endblock %} 

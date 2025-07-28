@@ -1,0 +1,293 @@
+{% extends "base.html" %}
+
+{% block title %}FAQ - PlantCare AI{% endblock %}
+
+{% block content %}
+<div class="container mt-5 pt-5">
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <!-- Page Header -->
+            <div class="text-center mb-5">
+                <h1 class="display-4 fw-bold text-primary">
+                    <i class="fas fa-question-circle me-3"></i>Frequently Asked Questions
+                </h1>
+                <p class="lead text-muted">Find answers to common questions about our plant disease detection system</p>
+            </div>
+
+            <!-- FAQ Categories -->
+            <div class="faq-categories mb-4">
+                <div class="btn-group" role="group" aria-label="FAQ Categories">
+                    <input type="radio" class="btn-check" name="faqCategory" id="general" checked>
+                    <label class="btn btn-outline-primary" for="general">General</label>
+                    
+                    <input type="radio" class="btn-check" name="faqCategory" id="technical">
+                    <label class="btn btn-outline-primary" for="technical">Technical</label>
+                    
+                    <input type="radio" class="btn-check" name="faqCategory" id="usage">
+                    <label class="btn btn-outline-primary" for="usage">Usage</label>
+                    
+                    <input type="radio" class="btn-check" name="faqCategory" id="support">
+                    <label class="btn btn-outline-primary" for="support">Support</label>
+                </div>
+            </div>
+
+            <!-- FAQ Accordion -->
+            <div class="accordion" id="faqAccordion">
+                <!-- General Questions -->
+                <div class="faq-section" data-category="general">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="faq1">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1">
+                                What is PlantCare AI?
+                            </button>
+                        </h2>
+                        <div id="collapse1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                PlantCare AI is an advanced plant disease detection system that uses artificial intelligence to identify diseases in plant leaves. Our system can detect 38 different plant diseases across various crops including apples, tomatoes, potatoes, grapes, and more.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="faq2">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2">
+                                How accurate is the disease detection?
+                            </button>
+                        </h2>
+                        <div id="collapse2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Our AI model has been trained on a large dataset of plant images and achieves high accuracy in disease detection. The system provides confidence scores for each prediction, allowing users to understand the reliability of the results.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="faq3">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3">
+                                Which plants are supported?
+                            </button>
+                        </h2>
+                        <div id="collapse3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                We support detection for various plants including:
+                                <ul>
+                                    <li>Apple trees (scab, black rot, cedar apple rust)</li>
+                                    <li>Tomato plants (early blight, late blight, bacterial spot)</li>
+                                    <li>Potato plants (early blight, late blight)</li>
+                                    <li>Grape vines (black rot, leaf blight)</li>
+                                    <li>Corn (common rust, northern leaf blight)</li>
+                                    <li>And many more crops</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Technical Questions -->
+                <div class="faq-section d-none" data-category="technical">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="faq4">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4">
+                                What technology is used?
+                            </button>
+                        </h2>
+                        <div id="collapse4" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Our system uses:
+                                <ul>
+                                    <li><strong>Machine Learning:</strong> TensorFlow/Keras with Convolutional Neural Networks</li>
+                                    <li><strong>Web Framework:</strong> Flask (Python)</li>
+                                    <li><strong>Frontend:</strong> HTML5, CSS3, Bootstrap 5, JavaScript</li>
+                                    <li><strong>Image Processing:</strong> PIL/Pillow for image preprocessing</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="faq5">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse5">
+                                How does the AI model work?
+                            </button>
+                        </h2>
+                        <div id="collapse5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                The AI model uses a Convolutional Neural Network (CNN) that has been trained on thousands of plant images. When you upload an image, it:
+                                <ol>
+                                    <li>Preprocesses the image to 128x128 pixels</li>
+                                    <li>Analyzes the visual features using the trained model</li>
+                                    <li>Compares against known disease patterns</li>
+                                    <li>Provides a prediction with confidence score</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="faq6">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse6">
+                                Is my data secure?
+                            </button>
+                        </h2>
+                        <div id="collapse6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Yes, we take data security seriously. Uploaded images are processed securely and are not stored permanently. We use secure protocols and follow best practices for data protection.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Usage Questions -->
+                <div class="faq-section d-none" data-category="usage">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="faq7">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse7">
+                                How do I use the disease detection?
+                            </button>
+                        </h2>
+                        <div id="collapse7" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Using our disease detection is simple:
+                                <ol>
+                                    <li>Go to the "Detect" page</li>
+                                    <li>Upload a clear image of the plant leaf</li>
+                                    <li>Click "Analyze Image"</li>
+                                    <li>View the results and treatment recommendations</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="faq8">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse8">
+                                What image format is supported?
+                            </button>
+                        </h2>
+                        <div id="collapse8" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                We support common image formats including:
+                                <ul>
+                                    <li>JPEG (.jpg, .jpeg)</li>
+                                    <li>PNG (.png)</li>
+                                    <li>GIF (.gif)</li>
+                                    <li>BMP (.bmp)</li>
+                                    <li>TIFF (.tiff)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="faq9">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse9">
+                                How can I get better results?
+                            </button>
+                        </h2>
+                        <div id="collapse9" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                For best results:
+                                <ul>
+                                    <li>Use clear, well-lit images</li>
+                                    <li>Focus on the affected area</li>
+                                    <li>Include the entire leaf if possible</li>
+                                    <li>Avoid shadows and reflections</li>
+                                    <li>Use high-resolution images</li>
+                                    <li>Take photos from multiple angles</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Support Questions -->
+                <div class="faq-section d-none" data-category="support">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="faq10">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse10">
+                                How can I get help?
+                            </button>
+                        </h2>
+                        <div id="collapse10" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                We offer multiple support channels:
+                                <ul>
+                                    <li><strong>Contact Form:</strong> Use our contact page for inquiries</li>
+                                    <li><strong>Email:</strong> info@plantcare-ai.com</li>
+                                    <li><strong>Phone:</strong> +1 (555) 123-4567</li>
+                                    <li><strong>Documentation:</strong> Check our diseases guide for detailed information</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="faq11">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse11">
+                                Is the service free?
+                            </button>
+                        </h2>
+                        <div id="collapse11" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Currently, our basic disease detection service is free to use. We may introduce premium features in the future, but the core functionality will remain accessible to all users.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="faq12">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse12">
+                                Can I use this for commercial purposes?
+                            </button>
+                        </h2>
+                        <div id="collapse12" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Yes, our service can be used for commercial agricultural purposes. However, we recommend consulting with agricultural experts for critical decisions and using our tool as part of a comprehensive plant health management strategy.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact CTA -->
+            <div class="text-center mt-5">
+                <div class="card bg-light">
+                    <div class="card-body">
+                        <h4>Still have questions?</h4>
+                        <p class="text-muted">If you couldn't find the answer you're looking for, feel free to contact us directly.</p>
+                        <a href="{{ url_for('contact') }}" class="btn btn-primary">
+                            <i class="fas fa-envelope me-2"></i>Contact Support
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const categoryButtons = document.querySelectorAll('input[name="faqCategory"]');
+    const faqSections = document.querySelectorAll('.faq-section');
+
+    categoryButtons.forEach(button => {
+        button.addEventListener('change', function() {
+            const selectedCategory = this.id;
+            
+            // Hide all sections
+            faqSections.forEach(section => {
+                section.classList.add('d-none');
+            });
+            
+            // Show selected section
+            const selectedSection = document.querySelector(`[data-category="${selectedCategory}"]`);
+            if (selectedSection) {
+                selectedSection.classList.remove('d-none');
+            }
+        });
+    });
+});
+</script>
+{% endblock %} 

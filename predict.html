@@ -1,0 +1,222 @@
+{% extends "base.html" %}
+
+{% block title %}Disease Detection - PlantCare AI{% endblock %}
+
+{% block content %}
+<div class="container mt-5 pt-5">
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <!-- Page Header -->
+            <div class="text-center mb-5">
+                <h1 class="display-4 fw-bold text-primary">
+                    <i class="fas fa-search me-3"></i>Plant Disease Detection
+                </h1>
+                <p class="lead text-muted">Upload a clear image of a plant leaf to get instant disease diagnosis</p>
+            </div>
+
+            <!-- Upload Form -->
+            <div class="upload-section mb-5">
+                <div class="card shadow-sm">
+                    <div class="card-body p-4">
+                        <form method="POST" enctype="multipart/form-data" id="uploadForm">
+                            <div class="upload-area" id="uploadArea">
+                                <div class="upload-content text-center">
+                                    <i class="fas fa-cloud-upload-alt upload-icon"></i>
+                                    <h4>Upload Plant Image</h4>
+                                    <p class="text-muted">Drag and drop your image here or click to browse</p>
+                                    <p id="fileName" style="color: #888; font-size: 0.95em; margin-bottom: 0.5em;"></p>
+                                    <input type="file" name="file" id="fileInput" class="file-input" accept="image/*" required>
+                                    <label for="fileInput" class="btn btn-primary">
+                                        <i class="fas fa-upload me-2"></i>Choose Image
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="text-center mt-3">
+                                <button type="submit" class="btn btn-success btn-lg" id="submitBtn">
+                                    <i class="fas fa-search me-2"></i>Analyze Image
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Error Message -->
+            {% if error %}
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <i class="fas fa-exclamation-triangle me-2"></i>
+                {{ error }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+            {% endif %}
+
+            <!-- Results Section -->
+            {% if prediction and disease_info %}
+            <div class="results-section">
+                <div class="card shadow">
+                    <div class="card-header bg-primary text-white">
+                        <h3 class="mb-0">
+                            <i class="fas fa-microscope me-2"></i>Analysis Results
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <!-- Image Display -->
+                            <div class="col-md-4">
+                                <div class="image-container">
+                                    <img src="{{ url_for('static', filename=img_path) }}" 
+                                         alt="Uploaded Image" class="img-fluid rounded">
+                                </div>
+                            </div>
+                            <!-- Results -->
+                            <div class="col-md-8">
+                                <div class="result-content">
+                                    <h4 class="text-primary mb-3">{{ disease_info.name }}</h4>
+                                    <!-- Confidence Score -->
+                                    <div class="confidence-score mb-3">
+                                        <label class="form-label">Confidence Score:</label>
+                                        <div class="progress">
+                                            <div class="progress-bar bg-success" role="progressbar" 
+                                                 style="width: {{ confidence }}%" 
+                                                 aria-valuenow="{{ confidence }}" 
+                                                 aria-valuemin="0" 
+                                                 aria-valuemax="100">
+                                                {{ "%.1f"|format(confidence) }}%
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Description -->
+                                    <div class="description mb-3">
+                                        <h6>Description:</h6>
+                                        <p class="text-muted">{{ disease_info.description }}</p>
+                                    </div>
+                                    <!-- Severity -->
+                                    {% if disease_info.severity %}
+                                    <div class="severity mb-3">
+                                        <h6>Severity:</h6>
+                                        <span class="badge bg-{{ 'danger' if 'High' in disease_info.severity else 'warning' if 'Moderate' in disease_info.severity else 'success' }}">
+                                            {{ disease_info.severity }}
+                                        </span>
+                                    </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Treatment Information -->
+                <div class="row mt-4">
+                    <!-- Do's -->
+                    <div class="col-md-6">
+                        <div class="card h-100 border-success">
+                            <div class="card-header bg-success text-white">
+                                <h5 class="mb-0">
+                                    <i class="fas fa-check-circle me-2"></i>Do's
+                                </h5>
+                            </div>
+                            <div class="card-body">
+                                <ul class="list-unstyled">
+                                    {% for do in disease_info.dos %}
+                                    <li class="mb-2">
+                                        <i class="fas fa-check text-success me-2"></i>{{ do }}
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Don'ts -->
+                    <div class="col-md-6">
+                        <div class="card h-100 border-danger">
+                            <div class="card-header bg-danger text-white">
+                                <h5 class="mb-0">
+                                    <i class="fas fa-times-circle me-2"></i>Don'ts
+                                </h5>
+                            </div>
+                            <div class="card-body">
+                                <ul class="list-unstyled">
+                                    {% for dont in disease_info.donts %}
+                                    <li class="mb-2">
+                                        <i class="fas fa-times text-danger me-2"></i>{{ dont }}
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Treatment -->
+                {% if disease_info.treatment %}
+                <div class="card mt-4 border-info">
+                    <div class="card-header bg-info text-white">
+                        <h5 class="mb-0">
+                            <i class="fas fa-medkit me-2"></i>Treatment
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <p class="mb-0">{{ disease_info.treatment }}</p>
+                    </div>
+                </div>
+                {% endif %}
+                <!-- Symptoms -->
+                {% if disease_info.symptoms %}
+                <div class="card mt-4 border-warning">
+                    <div class="card-header bg-warning text-dark">
+                        <h5 class="mb-0">
+                            <i class="fas fa-exclamation-triangle me-2"></i>Symptoms
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-unstyled">
+                            {% for symptom in disease_info.symptoms %}
+                            <li class="mb-2">
+                                <i class="fas fa-circle text-warning me-2"></i>{{ symptom }}
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+            {% endif %}
+            <!-- Tips Section -->
+            <div class="tips-section mt-5">
+                <div class="card bg-light">
+                    <div class="card-body">
+                        <h5><i class="fas fa-lightbulb me-2 text-warning"></i>Tips for Better Results</h5>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <ul class="list-unstyled">
+                                    <li><i class="fas fa-check text-success me-2"></i>Use clear, well-lit images</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>Focus on the affected area</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>Include the entire leaf if possible</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <ul class="list-unstyled">
+                                    <li><i class="fas fa-check text-success me-2"></i>Avoid shadows and reflections</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>Use high-resolution images</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>Take photos from multiple angles</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var fileInput = document.getElementById('fileInput');
+    var fileName = document.getElementById('fileName');
+    if (fileInput && fileName) {
+        fileInput.addEventListener('change', function(e) {
+            fileName.innerText = e.target.files[0] ? e.target.files[0].name : 'No file';
+        });
+    }
+});
+</script>
+{% endblock %} 

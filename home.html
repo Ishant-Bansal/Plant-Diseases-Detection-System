@@ -1,0 +1,203 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Plant Disease Detection{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="container">
+        <div class="row align-items-center min-vh-100">
+            <div class="col-lg-6">
+                <div class="hero-content">
+                    <h1 class="hero-title">
+                        Detect Plant Diseases with 
+                        <span class="text-primary">AI</span>
+                    </h1>
+                    <p class="hero-subtitle">
+                        Advanced machine learning technology to identify plant diseases from leaf images. 
+                        Get instant diagnosis and treatment recommendations for healthier crops.
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="{{ url_for('predict') }}" class="btn btn-primary btn-lg me-3">
+                            <i class="fas fa-search me-2"></i>Start Detection
+                        </a>
+                        <a href="{{ url_for('diseases') }}" class="btn btn-outline-primary btn-lg">
+                            <i class="fas fa-book me-2"></i>Learn More
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="hero-image">
+                    <img src="{{ url_for('static', filename='hero-image.jpg') }}" alt="Plant Disease Detection" class="img-fluid rounded-3 shadow">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="features-section py-5">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-12">
+                <h2 class="section-title">Why Choose PlantCare AI?</h2>
+                <p class="section-subtitle">Advanced features to help you maintain healthy plants</p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="feature-card text-center">
+                    <div class="feature-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h4>AI-Powered Detection</h4>
+                    <p>Our advanced machine learning model can identify 38 different plant diseases with high accuracy.</p>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="feature-card text-center">
+                    <div class="feature-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h4>Instant Results</h4>
+                    <p>Get disease diagnosis and treatment recommendations within seconds of uploading an image.</p>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="feature-card text-center">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h4>Mobile Friendly</h4>
+                    <p>Use our platform on any device - smartphone, tablet, or computer for convenience.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- How It Works Section -->
+<section class="how-it-works-section py-5 bg-light">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-12">
+                <h2 class="section-title">How It Works</h2>
+                <p class="section-subtitle">Simple steps to get your plant disease diagnosis</p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-md-3">
+                <div class="step-card text-center">
+                    <div class="step-number">1</div>
+                    <h5>Upload Image</h5>
+                    <p>Take a clear photo of the affected plant leaf and upload it to our platform.</p>
+                </div>
+            </div>
+            
+            <div class="col-md-3">
+                <div class="step-card text-center">
+                    <div class="step-number">2</div>
+                    <h5>AI Analysis</h5>
+                    <p>Our AI model analyzes the image and identifies potential diseases or health issues.</p>
+                </div>
+            </div>
+            
+            <div class="col-md-3">
+                <div class="step-card text-center">
+                    <div class="step-number">3</div>
+                    <h5>Get Results</h5>
+                    <p>Receive detailed diagnosis with confidence score and disease information.</p>
+                </div>
+            </div>
+            
+            <div class="col-md-3">
+                <div class="step-card text-center">
+                    <div class="step-number">4</div>
+                    <h5>Treatment Guide</h5>
+                    <p>Get specific recommendations for treatment, prevention, and care instructions.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Supported Plants Section -->
+<section class="supported-plants-section py-5">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-12">
+                <h2 class="section-title">Supported Plants</h2>
+                <p class="section-subtitle">We can detect diseases in various types of plants and crops</p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-md-2 col-6">
+                <div class="plant-card text-center">
+                    <i class="fas fa-apple-alt plant-icon"></i>
+                    <h6>Apple</h6>
+                </div>
+            </div>
+            
+            <div class="col-md-2 col-6">
+                <div class="plant-card text-center">
+                    <i class="fas fa-seedling plant-icon"></i>
+                    <h6>Tomato</h6>
+                </div>
+            </div>
+            
+            <div class="col-md-2 col-6">
+                <div class="plant-card text-center">
+                    <i class="fas fa-carrot plant-icon"></i>
+                    <h6>Potato</h6>
+                </div>
+            </div>
+            
+            <div class="col-md-2 col-6">
+                <div class="plant-card text-center">
+                    <i class="fas fa-leaf plant-icon"></i>
+                    <h6>Grape</h6>
+                </div>
+            </div>
+            
+            <div class="col-md-2 col-6">
+                <div class="plant-card text-center">
+                    <i class="fas fa-tree plant-icon"></i>
+                    <h6>Cherry</h6>
+                </div>
+            </div>
+            
+            <div class="col-md-2 col-6">
+                <div class="plant-card text-center">
+                    <i class="fas fa-seedling plant-icon"></i>
+                    <h6>Corn</h6>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row mt-4">
+            <div class="col-12 text-center">
+                <a href="{{ url_for('diseases') }}" class="btn btn-outline-primary">
+                    View All Supported Plants
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section py-5 bg-primary text-white">
+    <div class="container text-center">
+        <h2>Ready to Diagnose Your Plants?</h2>
+        <p class="lead mb-4">Upload an image and get instant disease detection results</p>
+        <a href="{{ url_for('predict') }}" class="btn btn-light btn-lg">
+            <i class="fas fa-upload me-2"></i>Start Detection Now
+        </a>
+    </div>
+</section>
+{% endblock %} 

@@ -1,0 +1,206 @@
+{% extends "base.html" %}
+
+{% block title %}About - PlantCare AI{% endblock %}
+
+{% block content %}
+<div class="container mt-5 pt-5">
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <!-- Page Header -->
+            <div class="text-center mb-5">
+                <h1 class="display-4 fw-bold text-primary">
+                    <i class="fas fa-info-circle me-3"></i>About PlantCare AI
+                </h1>
+                <p class="lead text-muted">Advanced plant disease detection powered by artificial intelligence</p>
+            </div>
+
+            <!-- Mission Section -->
+            <div class="mission-section mb-5">
+                <div class="card shadow-sm">
+                    <div class="card-body p-4">
+                        <h2 class="text-primary mb-3">Our Mission</h2>
+                        <p class="lead">
+                            PlantCare AI is dedicated to helping farmers, gardeners, and agricultural professionals 
+                            identify and manage plant diseases effectively. Our advanced machine learning technology 
+                            provides instant, accurate disease detection to promote healthier crops and sustainable agriculture.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Technology Stack -->
+            <div class="technology-section mb-5">
+                <h2 class="text-primary mb-4">Technology Stack</h2>
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <div class="tech-card">
+                            <div class="tech-icon">
+                                <i class="fas fa-brain"></i>
+                            </div>
+                            <h5>Machine Learning</h5>
+                            <ul class="list-unstyled">
+                                <li><i class="fas fa-check text-success me-2"></i>TensorFlow/Keras</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Convolutional Neural Networks</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Transfer Learning</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Image Classification</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <div class="tech-card">
+                            <div class="tech-icon">
+                                <i class="fas fa-code"></i>
+                            </div>
+                            <h5>Web Development</h5>
+                            <ul class="list-unstyled">
+                                <li><i class="fas fa-check text-success me-2"></i>Flask (Python)</li>
+                                <li><i class="fas fa-check text-success me-2"></i>HTML5 & CSS3</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Bootstrap 5</li>
+                                <li><i class="fas fa-check text-success me-2"></i>JavaScript</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <div class="tech-card">
+                            <div class="tech-icon">
+                                <i class="fas fa-database"></i>
+                            </div>
+                            <h5>Data Processing</h5>
+                            <ul class="list-unstyled">
+                                <li><i class="fas fa-check text-success me-2"></i>NumPy</li>
+                                <li><i class="fas fa-check text-success me-2"></i>PIL/Pillow</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Image Preprocessing</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Data Augmentation</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <div class="tech-card">
+                            <div class="tech-icon">
+                                <i class="fas fa-cloud"></i>
+                            </div>
+                            <h5>Deployment</h5>
+                            <ul class="list-unstyled">
+                                <li><i class="fas fa-check text-success me-2"></i>Flask Web Server</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Responsive Design</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Cross-platform</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Mobile-friendly</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Model Information -->
+            <div class="model-section mb-5">
+                <div class="card bg-light">
+                    <div class="card-body">
+                        <h3 class="text-primary mb-3">AI Model Details</h3>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h5>Model Specifications:</h5>
+                                <ul class="list-unstyled">
+                                    <li><i class="fas fa-layer-group text-info me-2"></i>Architecture: CNN</li>
+                                    <li><i class="fas fa-image text-info me-2"></i>Input Size: 128x128 pixels</li>
+                                    <li><i class="fas fa-tags text-info me-2"></i>Classes: 38 plant diseases</li>
+                                    <li><i class="fas fa-chart-line text-info me-2"></i>Accuracy: High precision</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <h5>Supported Plants:</h5>
+                                <ul class="list-unstyled">
+                                    <li><i class="fas fa-apple-alt text-success me-2"></i>Apple, Tomato, Potato</li>
+                                    <li><i class="fas fa-leaf text-success me-2"></i>Grape, Corn, Cherry</li>
+                                    <li><i class="fas fa-seedling text-success me-2"></i>Peach, Pepper, Squash</li>
+                                    <li><i class="fas fa-tree text-success me-2"></i>Strawberry & more</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Features -->
+            <div class="features-section mb-5">
+                <h2 class="text-primary mb-4">Key Features</h2>
+                <div class="row g-4">
+                    <div class="col-md-4">
+                        <div class="feature-item text-center">
+                            <div class="feature-icon-large">
+                                <i class="fas fa-search"></i>
+                            </div>
+                            <h5>Instant Detection</h5>
+                            <p class="text-muted">Get disease diagnosis within seconds of uploading an image</p>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <div class="feature-item text-center">
+                            <div class="feature-icon-large">
+                                <i class="fas fa-chart-bar"></i>
+                            </div>
+                            <h5>Confidence Scores</h5>
+                            <p class="text-muted">View detailed confidence levels for each prediction</p>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <div class="feature-item text-center">
+                            <div class="feature-icon-large">
+                                <i class="fas fa-book-medical"></i>
+                            </div>
+                            <h5>Treatment Guide</h5>
+                            <p class="text-muted">Comprehensive treatment and prevention recommendations</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Team/Project Info -->
+            <div class="project-info-section">
+                <div class="card border-primary">
+                    <div class="card-header bg-primary text-white">
+                        <h4 class="mb-0">
+                            <i class="fas fa-users me-2"></i>Project Information
+                        </h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6>Project Goals:</h6>
+                                <ul class="list-unstyled">
+                                    <li><i class="fas fa-bullseye text-primary me-2"></i>Improve crop health monitoring</li>
+                                    <li><i class="fas fa-bullseye text-primary me-2"></i>Reduce crop losses</li>
+                                    <li><i class="fas fa-bullseye text-primary me-2"></i>Support sustainable agriculture</li>
+                                    <li><i class="fas fa-bullseye text-primary me-2"></i>Provide accessible AI tools</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <h6>Future Enhancements:</h6>
+                                <ul class="list-unstyled">
+                                    <li><i class="fas fa-rocket text-success me-2"></i>Mobile app development</li>
+                                    <li><i class="fas fa-rocket text-success me-2"></i>Real-time monitoring</li>
+                                    <li><i class="fas fa-rocket text-success me-2"></i>Weather integration</li>
+                                    <li><i class="fas fa-rocket text-success me-2"></i>Community features</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact CTA -->
+            <div class="text-center mt-5">
+                <h4>Have Questions?</h4>
+                <p class="text-muted">We'd love to hear from you and help with any inquiries</p>
+                <a href="{{ url_for('contact') }}" class="btn btn-primary btn-lg">
+                    <i class="fas fa-envelope me-2"></i>Contact Us
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 
